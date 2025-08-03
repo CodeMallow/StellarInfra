@@ -148,6 +148,7 @@ def checkFolder(folderPath):
     if not os.path.isdir(folderPath) and not os.path.isfile(folderPath):
         warnings.warn("path: " + folderPath + " doesn't exist, and it is created")
         os.makedirs(folderPath)
+    return folderPath
 
 def getFileList(folder_path,extension):
     ans = [CPath(os.path.join(folder_path,file)) for file in os.listdir(folder_path) if file.endswith(extension)]

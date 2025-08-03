@@ -73,6 +73,11 @@ def toJson_int(val):
     """ for np float 32"""
     return int(val)
 
+@toJson.register(np.int32)
+def toJson_int(val):
+    """ for np float 32"""
+    return int(val)
+
 @toJson.register(np.float32)
 def toJson_float32(val):
     """ for np float 32"""
