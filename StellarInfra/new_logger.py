@@ -2,7 +2,7 @@ import sys
 import logging
 
 
-def get_logger(file_path, logger_name,  console_level=logging.INFO, file_level=logging.DEBUG):
+def get_logger(file_path, logger_name,  console_level=logging.DEBUG, file_level=logging.INFO):
     #adopt from chat-gpt
 
     logger = logging.getLogger(logger_name)
