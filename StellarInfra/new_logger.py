@@ -4,7 +4,7 @@ import logging
 
 start_time = 0
 
-def get_logger(file_path, logger_name,  console_level=logging.DEBUG, file_level=logging.INFO):
+def get_logger(file_path, logger_name,  console_level=logging.INFO, file_level=logging.DEBUG):
     #adopt from chat-gpt
 
     logger = logging.getLogger(logger_name)
