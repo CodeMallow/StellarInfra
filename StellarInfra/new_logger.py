@@ -1,6 +1,8 @@
 import sys
+import time
 import logging
 
+start_time = 0
 
 def get_logger(file_path, logger_name,  console_level=logging.INFO, file_level=logging.DEBUG):
     #adopt from chat-gpt
@@ -25,5 +27,29 @@ def get_logger(file_path, logger_name,  console_level=logging.INFO, file_level=l
     file_handler.setLevel(file_level)
     file_handler.setFormatter(formatter)
     logger.addHandler(file_handler)
-
+    global start_time
+    start_time = time.time()
     return logger
+
+class SecondsFormatter(logging.Formatter):
+    "from chatGPT"
+    def format(self, record):
+        global start_time
+        now_time = time.time()
+        # add relative seconds field
+        record.relativeSeconds = now_time - start_time
+        return super().format(record)
+    
+
+def set_logger_time(logger: logging.Logger, mode:str):
+    if mode == 'abs':
+        new_formatter = logging.Formatter(
+            '%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+            datefmt='%Y-%m-%d %H:%M:%S'
+        )
+    else:
+        new_formatter = SecondsFormatter(
+            '%(relativeSeconds).3f - %(name)s - %(levelname)s - %(message)s',
+        )
+    for handler in logger.handlers:
+        handler.setFormatter(new_formatter)
